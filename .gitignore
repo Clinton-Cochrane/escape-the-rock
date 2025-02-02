@@ -1,0 +1,23 @@
+# Ignore user-specific settings
+.vs/
+*.csproj
+*.sln
+*.user
+
+# Ignore Unity cache files
+Library/
+Logs/
+Temp/
+Obj/
+UserSettings/
+Packages/*/package-cache/
+Packages/*/TestResults/
+
+# Ignore build files
+Build/
+Builds/
+ExportedObj/
+.gradle/
+.DS_Store
+*.apk
+*.unitypackage
