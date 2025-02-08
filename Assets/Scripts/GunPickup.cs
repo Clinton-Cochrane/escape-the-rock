@@ -57,7 +57,11 @@ public class GunPickup : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position + new Vector3(0.5f * lastDirection, 0, 0), Quaternion.identity);
         Vector2 shootDirection = new(lastDirection, 0);
-        bullet.GetComponent<Bullet>().Initialize(shootDirection);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript)
+        {
+            bulletScript.Initialize(shootDirection, gameObject); // Pass gun as the shooter
+        }
     }
 
 

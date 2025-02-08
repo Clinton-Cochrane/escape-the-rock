@@ -1,22 +1,28 @@
 using UnityEngine;
 
-public class EnemyHealthBar: MonoBehaviour
+public class EnemyHealthBar : MonoBehaviour
 {
-    private Transform bar;
-    private Health enemyHealth;
+    public float maxHealth = 100f;
+    private float currentHealth;
 
-    void Start()
+    private void Start()
     {
-        bar = transform.Find("Bar");
-        enemyHealth = GetComponentInParent<Health>();
+        currentHealth = maxHealth;
     }
 
-    void Update()
+    public void TakeDamage(float damage)
     {
-        if(enemyHealth != null)
+        currentHealth -= damage;
+        Debug.Log($"{gameObject.name} took {damage} damage! Remaining HP: {currentHealth}");
+        if (currentHealth <= 0) 
         {
-            float healthPercentage = enemyHealth.GetHealthPercentage();
-            bar.localScale = new Vector3(healthPercentage, 1f, 1f);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Debug.Log($"{gameObject.name} has died!");
+        Destroy(gameObject);
     }
 }

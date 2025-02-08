@@ -57,7 +57,7 @@ public class GunTests
         GameObject bullet = GameObject.Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
 
-        bulletScript.Initialize(Vector2.right); // Fire right
+        bulletScript.Initialize(Vector2.right, player); // Fire right
 
         float initialX = bullet.transform.position.x;
 
