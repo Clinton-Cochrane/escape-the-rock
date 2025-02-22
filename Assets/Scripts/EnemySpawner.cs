@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnWaves());
+
     }
 
     IEnumerator SpawnWaves()
@@ -35,9 +36,17 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        Debug.Log(spawnPoints.Length);
         if (spawnPoints.Length == 0) return; // Prevents errors if no spawn points
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+
+        Debug.Log($"Spawned enemy at {spawnPoint.position}, actual position: {newEnemy.transform.position}");
+
+        // TEMP: Draw a debug line to visualize spawn position
+        Debug.DrawLine(spawnPoint.position, spawnPoint.position + Vector3.up * 2, Color.red, 5f);
     }
+
+
 }
